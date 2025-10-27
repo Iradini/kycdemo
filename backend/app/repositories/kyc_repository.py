@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.dbb.models import KYCRecord, KYCStatus
+from app.db.models import KYCRecord, KYCStatus
 
 class KYCRepository:
     def __init__(self, db: Session):

@@ -1,7 +1,7 @@
-from pydantic import BaseMOdel, Field
+from pydantic import BaseModel, Field
 from typing import Optional
 
-class KRCRequest(BaseModel):
+class KYCRequest(BaseModel):
     full_name: str = Field(..., min_length=2)
     document_id: str = Field(..., min_length=4)
     country: str = Field(..., min_length=2, max_length=3)

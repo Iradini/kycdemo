@@ -13,8 +13,8 @@ class KYCRecord(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     full_name = Column(String(120), nullable=False)
-    document_id = Column(String(64), nullale=False, index=True)
+    document_id = Column(String(64), nullable=False, index=True)
     country = Column(String(3), nullable=False)
-    status = Column(Enum(KYCStatuds), default=KYCStatus.pending, nullable=False)
-    provider_reference = Column(Strinf(128), nullable=True)
+    status = Column(Enum(KYCStatus), default=KYCStatus.pending, nullable=False)
+    provider_reference = Column(String(128), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())  

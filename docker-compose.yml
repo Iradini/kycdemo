@@ -1,7 +1,8 @@
-version:'3.9'
+version: "3.9"
+
 services:
   db:
-    image: postres:15
+    image: postgres:15
     container_name: db
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -10,8 +11,8 @@ services:
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
-      -db_data:/var/lib/postgresgl/data
-  
+      - db_data:/var/lib/postgresql/data
+
   api:
     build:
       context: ./backend
@@ -19,23 +20,22 @@ services:
     container_name: api
     env_file: .env
     ports:
-      - "{API_PORT}:8000"
+      - "${API_PORT}:8000"
     volumes:
       - ./backend:/app
     depends_on:
       - db
-  
+
   frontend:
     build:
-      content: ./frontend
+      context: ./frontend
       dockerfile: Dockerfile
     container_name: frontend
     env_file: .env
     ports:
-      - "{FRONT_PORT}:5173"
-    volumes:
-      - ./frontend:/app
-    depends_on: 
+      - "${FRONT_PORT}:5173"
+    depends_on:
       - api
+
 volumes:
   db_data:

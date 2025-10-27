@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.db.sessions import get_db, Base, engine
-from app.shcemas.kyc import KYCRequest, KYCResponse
+from app.schemas.kyc import KYCRequest, KYCResponse
 from app.repositories.kyc_repository import KYCRepository
 from app.services.kyc_service import KYCService, FakedKYCProvider
 from app.db.models import KYCStatus
@@ -16,8 +16,8 @@ def verify_kyc(payload: KYCRequest, db: Session = Depends(get_db)):
     repo = KYCRepository(db)
     service = KYCService(FakedKYCProvider())
 
-    record = repo.create(full_name=payload.full_name, document_id=payload.doucumrnt_id, 
-                         country=payloady.country)
+    record = repo.create(full_name=payload.full_name, document_id=payload.document_id, 
+                         country=payload.country)
     status, provider_ref = service.run_verification(record)
     record = repo.set_status(record, status, provider_ref)
 
