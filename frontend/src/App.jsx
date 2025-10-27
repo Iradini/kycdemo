@@ -1,4 +1,5 @@
-import KYCForm from './components/KYCForm'
+import React from 'react'
+import KYCForm from './components/KYCForm.jsx'
 
 export default function App(){
     return (
@@ -15,3 +16,16 @@ export default function App(){
         </div>
     )
 }
+// frontend/src/App.jsx
+// ⚠️ prueba sin importar KYCForm para aislar el problema
+// import KYCForm from './components/KYCForm.jsx'
+
+// export default function App(){
+//   return (
+//     <div style={{ padding: 20 }}>
+//       <h1>Flipzen — KYC Demo</h1>
+//       <p>Si ves este texto, el render base funciona.</p>
+//       {/* <KYCForm /> */}
+//     </div>
+//   )
+// }
